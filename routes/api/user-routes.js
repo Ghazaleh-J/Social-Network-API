@@ -9,7 +9,7 @@ router.get('/', (req,res)=> {
 
 //TODO - ROUTE THAT CREATES A NEW USER
 router.post('/', (req,res)=> {
-    User.create(req.body)
+  User.create(req.body)
       .then((dbUserData) => {
         res.json(dbUserData);
       })
@@ -17,7 +17,6 @@ router.post('/', (req,res)=> {
         console.log(err);
         res.status(500).json(err);
       });
-
 });
 
 //TODO - ROUTE THAT GETS A SINGLE USER BASED ON USER ID
