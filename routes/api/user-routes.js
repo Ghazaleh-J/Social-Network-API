@@ -3,20 +3,26 @@ const router = require('express').Router();
 const {User} = require("../../models")
 
 //TODO - ROUTE THAT GETS ALL THE USERS, include friends?
-router.get('/', (req,res)=> {
-
-})
+router.get('/', async (req,res)=> {
+  try {
+    const users = await User.find({})
+    res.status(200).json(users)
+  } catch(err){
+    console.log(err)
+    res.status(500).json(err)
+  }
+});
 
 //TODO - ROUTE THAT CREATES A NEW USER
-router.post('/', (req,res)=> {
-  User.create(req.body)
-      .then((dbUserData) => {
-        res.json(dbUserData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+router.post('/', async (req,res)=> {
+  try {
+
+    const newUser = await User.create(req.body)
+    res.status(200).json(newUser)
+  } catch(err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
 });
 
 //TODO - ROUTE THAT GETS A SINGLE USER BASED ON USER ID
