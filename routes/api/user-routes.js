@@ -6,6 +6,7 @@ const {User} = require("../../models")
 router.get('/', async (req,res)=> {
   try {
     const users = await User.find({})
+    .populate('friends')
     res.status(200).json(users)
   } catch(err){
     console.log(err)
@@ -62,7 +63,8 @@ router.delete('/:userId', async (req,res)=> {
 });
 
 //TODO - ROUTE THAT ADDS A FRIEND TO A USER
-router.put('/:userId/friends/:friendId', (req,res)=> {
+router.put('/:userId/friends/:friendId', async (req,res)=> {
+
 
 })
 
