@@ -26,7 +26,14 @@ router.post('/', async (req,res)=> {
 });
 
 //TODO - ROUTE THAT GETS A SINGLE USER BASED ON USER ID
-router.get('/:userId', (req,res) => {
+router.get('/:userId', async (req,res) => {
+  try {
+    const singleUser = await User.findOne({ _id: req.params.userId })
+    res.status(200).json(singleUser)
+} catch(err) {
+    console.log(err)
+    res.status(500).json(err)
+   }
 
 })
 
