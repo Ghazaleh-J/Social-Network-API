@@ -18,7 +18,6 @@ router.post('/', async (req,res)=> {
   try {
 
     const newUser = await User.create(req.body)
-    const updatedUser = await User.findOneAndUpdate({ _id:  req.params.userId }, {$push: {users:  req.params.userId}}, {runValidators: true, new: true})
     res.status(200).json(newUser)
   } catch(err) {
     console.log(err)
@@ -54,7 +53,6 @@ router.put('/:userId', async (req,res)=> {
 router.delete('/:userId', async (req,res)=> {
   try {
     const deletedUser = await User.findOneAndRemove({ _id: req.params.userId })
-    const updatedUser = await User.findOneAndUpdate({ _id:  req.params.userId }, {$pull: {users:  req.params.userId}}, {runValidators: true, new: true})
     res.status(200).json(deletedUser)
 } catch(err) {
     console.log(err)
