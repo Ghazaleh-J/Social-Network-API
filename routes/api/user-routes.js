@@ -38,7 +38,14 @@ router.get('/:userId', async (req,res) => {
 })
 
 //TODO - ROUTE THAT UPDATES A SINGLE USER
-router.put('/:userId', (req,res)=> {
+router.put('/:userId', async (req,res)=> {
+  try {
+    const updatedUser = await User.findOneAndUpdate({ _id: req.params.userId }, {$set: req.body}, {runValidators: true, new: true})
+    res.status(200).json(updatedUser)
+} catch(err) {
+    console.log(err)
+    res.status(500).json(err)
+   }
 
 })
 
