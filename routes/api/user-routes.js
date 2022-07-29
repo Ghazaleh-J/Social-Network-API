@@ -65,7 +65,7 @@ router.delete('/:userId', async (req,res)=> {
 //TODO - ROUTE THAT ADDS A FRIEND TO A USER
 router.put('/:userId/friends/:friendId', async (req,res)=> {
   try {
-    const newFriend = await User.findOneAndUpdate({ _id: req.params.userId }, {$push: {friends: req.params.friendId}}, {runValidators: true, new: true})
+    const newFriend = await User.findOneAndUpdate({ _id: req.params.userId }, {$addToSet: {friends: req.params.friendId}}, {runValidators: true, new: true})
     res.status(200).json(newFriend)
 } catch (err) {
     console.log(err)
@@ -78,14 +78,13 @@ router.put('/:userId/friends/:friendId', async (req,res)=> {
 //TODO - ROUTE THAT DELETES A FRIEND FROM A USER'S FRIENDS, DONT DELETE THE FRIEND AS A USER THOUGH!
 router.delete('/:userId/friends/:friendId', async (req,res)=> {
   //NOT WORKING : CALLBACK MUST BE A FUNCTION, GOT [OBJECT OBJECT]
-//   try {
-//     const deletedFriend = await User.findOneAndRemove({ _id: req.params.userId }, {$pull: {friends: req.params.friendId}}, {runValidators: true, new: true})
-//     console.log('HEEEEEEEEEEEEEY', deletedFriend)
-//     res.status(200).json(deletedFriend)
-// } catch (err) {
-//     console.log(err)
-//     res.status(500).json(err)
-// }
+  try {
+    const deletedFriend = await User.findOneAndUpdate({ _id: req.params.userId }, {$pull: {friends: req.params.friendId}}, {runValidators: true, new: true})
+    res.status(200).json(deletedFriend)
+} catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+}
   
 });
 
