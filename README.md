@@ -1,4 +1,4 @@
-# Social_Network_API_NoSQL-18
+# Social_Network_API_NoSQL
 
 ## Description
 MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data.
@@ -15,6 +15,15 @@ I've used Express.js for routing, a MongoDB database, and the Mongoose ODM.
 * Copy the repository to your system
 * npm install
 * node server.js
+
+## Technologies
+* Express.js
+* Node.js
+* MongoDB
+* Mongoose ODM
+
+## Usage
+* This application will allow users to share their thoughts, react to friends’ thoughts, and create a friend list with a NoSQL Database, MongoDB
 
 ## Link
 [Video Demo](https://drive.google.com/file/d/1XQK9n97DN-4C1pefTFxV9RJZmTrWMj2y/view)
